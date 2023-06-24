@@ -1,0 +1,41 @@
+List<String> images = [
+  "Assets/Images/Agbokim-waterfalls.jpg",
+  "Assets/Images/BenueRiver.png",
+  "Assets/Images/Bina-Footprints-Niger.jpeg",
+  "Assets/Images/biu-plateau.jpg",
+  "Assets/Images/chappalwaadi.jpg",
+  "Assets/Images/Idanre-Hill.jpg",
+  "Assets/Images/IkogosiWarmSprings.png",
+  "Assets/Images/kanowalls.png",
+  "Assets/Images/Mambilla-Plateau-Taraba.jpg",
+  "Assets/Images/Mandara.jpg",
+  "Assets/Images/mountpatti.jpg",
+  "Assets/Images/obanhills.jpeg",
+  "Assets/Images/Obudu-Cattle-Ranch-Resort-1.jpg",
+  "Assets/Images/Ogbunike-Cave-Oyi-Anambra-State.png",
+  "Assets/Images/olumo.jpg",
+  "Assets/Images/Osogbo.jpg",
+  "Assets/Images/sukur-1.jpg",
+  "Assets/Images/zumarock.png",
+];
+
+List <String> title = [
+  "Agbokim Waterfalls",
+  "Benue River",
+  "Bina Footprints",
+  "Biu Plateau",
+  "Chappal Waadi",
+  "Idanre Hills",
+  "Ikogosi Warn Spring",
+  "Kano Walls",
+  "Mambilla Plateau Tarabe",
+  "Mandara Mountains",
+  "Mountain Patti",
+  "Oban Hills",
+  "Obudu Cattle Ranch Resort",
+  "Ogbunike Cave",
+  "Olumo",
+  "Osogbo"
+  "Sukur",
+  "Zuma Rock"
+]
