@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'Nunito.dart';
+import 'Data.dart';
+import 'dart:math';
 
 void main() {
   runApp(const MyApp());
