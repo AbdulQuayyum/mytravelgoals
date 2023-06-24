@@ -92,14 +92,14 @@ flutter:
   fonts:
     - family: Nunito
       fonts:
-        - asset: Assets/Font/Nunito-Black.ttf
-        - asset: Assets/Font/Nunito-Bold.ttf
-        - asset: Assets/Font/Nunito-ExtraBold.ttf
-        - asset: Assets/Font/Nunito-ExtraLight.ttf
-        - asset: Assets/Font/Nunito-Light.ttf
-        - asset: Assets/Font/Nunito-Medium.ttf
-        - asset: Assets/Font/Nunito-Regular.ttf
-        - asset: Assets/Font/Nunito-SemiBold.ttf
+        - asset: Assets/Fonts/Nunito-Black.ttf
+        - asset: Assets/Fonts/Nunito-Bold.ttf
+        - asset: Assets/Fonts/Nunito-ExtraBold.ttf
+        - asset: Assets/Fonts/Nunito-ExtraLight.ttf
+        - asset: Assets/Fonts/Nunito-Light.ttf
+        - asset: Assets/Fonts/Nunito-Medium.ttf
+        - asset: Assets/Fonts/Nunito-Regular.ttf
+        - asset: Assets/Fonts/Nunito-SemiBold.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
