@@ -37,5 +37,5 @@ List <String> title = [
   "Olumo",
   "Osogbo"
   "Sukur",
-  "Zuma Rock"
-]
+  "Zuma Rock",
+];
