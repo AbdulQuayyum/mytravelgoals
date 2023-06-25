@@ -1,118 +1,409 @@
 import 'package:flutter/material.dart';
-import 'Nunito.dart';
-import 'Data.dart';
 import 'dart:math';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(
+    home: MyApp(),
+    debugShowCheckedModeBanner: false,
+  ));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
+class MyApp extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
+  _MyAppState createState() => _MyAppState();
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+const double cardAspectRatio = 12.0 / 16.0;
+const double widgetAspectRatio = cardAspectRatio * 1.2;
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+class _MyAppState extends State<MyApp> {
+  PageController controller = PageController(initialPage: images.length - 1);
+  double currentPage = images.length - 1.0;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+  void initState() {
+    super.initState();
+    controller.addListener(() {
+      setState(() {
+        currentPage = controller.page!;
+      });
     });
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Color.fromARGB(255, 255, 255, 255),
+            Color.fromARGB(255, 255, 255, 255),
           ],
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+          tileMode: TileMode.clamp,
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 12.0,
+                  right: 12.0,
+                  top: 30.0,
+                  bottom: 8.0,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    IconButton(
+                      icon: Icon(
+                        Icons.menu,
+                        color: Colors.grey,
+                        size: 30.0,
+                      ),
+                      onPressed: () {},
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        Icons.search,
+                        color: Colors.grey,
+                        size: 30.0,
+                      ),
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      "Trending Tour Sites",
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 32.0,
+                        fontFamily: "Nunito",
+                        letterSpacing: 1.0,
+                      ),
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        Icons.more_horiz,
+                        size: 12.0,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 142, 139, 139),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      child: Center(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 22.0,
+                            vertical: 6.0,
+                          ),
+                          child: Text(
+                            "Animated",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 15.0,
+                    ),
+                    Text(
+                      "20+ Destinations",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ],
+                ),
+              ),
+              Stack(
+                children: <Widget>[
+                  CardScrollWidget(currentPage),
+                  Positioned.fill(
+                    child: PageView.builder(
+                      itemCount: images.length,
+                      controller: controller,
+                      reverse: true,
+                      itemBuilder: (context, index) {
+                        return Container();
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      "Tourist Favourite",
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 32.0,
+                        fontFamily: "Nunito",
+                        letterSpacing: 1.0,
+                      ),
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        Icons.more_horiz,
+                        size: 12.0,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      child: Center(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 22.0,
+                            vertical: 6.0,
+                          ),
+                          child: Text(
+                            "Latest",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 15.0,
+                    ),
+                    Text(
+                      "9+ Destinations",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Row(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(left: 18.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20.0),
+                      child: Image.asset(
+                        "Assets/Images/Obudu-Cattle-Ranch-Resort-1.jpg",
+                        width: 296.0,
+                        height: 222.0,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
+
+class CardScrollWidget extends StatelessWidget {
+  final double currentPage;
+  final double padding = 20.0;
+  final double verticalInset = 20.0;
+
+  CardScrollWidget(this.currentPage);
+
+  @override
+  Widget build(BuildContext context) {
+    return AspectRatio(
+      aspectRatio: widgetAspectRatio,
+      child: LayoutBuilder(builder: (context, constraints) {
+        final width = constraints.maxWidth;
+        final height = constraints.maxHeight;
+
+        final safeWidth = width - 2 * padding;
+        final safeHeight = height - 2 * padding;
+
+        final heightOfPrimaryCard = safeHeight;
+        final widthOfPrimaryCard = heightOfPrimaryCard * cardAspectRatio;
+
+        final primaryCardLeft = safeWidth - widthOfPrimaryCard;
+        final horizontalInset = primaryCardLeft / 2;
+
+        final cardList = <Widget>[];
+
+        for (var i = 0; i < images.length; i++) {
+          final delta = i - currentPage;
+          final isOnRight = delta > 0;
+
+          final start = padding +
+              max(
+                primaryCardLeft -
+                    horizontalInset * -delta * (isOnRight ? 15 : 1),
+                0.0,
+              );
+
+          final cardItem = Positioned.directional(
+            top: padding + verticalInset * max(-delta, 0.0),
+            bottom: padding + verticalInset * max(-delta, 0.0),
+            start: start,
+            textDirection: TextDirection.rtl,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black12,
+                      offset: Offset(3.0, 6.0),
+                      blurRadius: 10.0,
+                    ),
+                  ],
+                ),
+                child: AspectRatio(
+                  aspectRatio: cardAspectRatio,
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: <Widget>[
+                      Image.asset(
+                        images[i],
+                        fit: BoxFit.cover,
+                      ),
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 16.0,
+                                vertical: 8.0,
+                              ),
+                              child: Text(
+                                title[i],
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 25.0,
+                                  fontFamily: "Nunito",
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10.0,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 12.0,
+                                bottom: 12.0,
+                              ),
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 22.0,
+                                  vertical: 6.0,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey,
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                child: Text(
+                                  "Read Later",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+          cardList.add(cardItem);
+        }
+
+        return Stack(
+          children: cardList,
+        );
+      }),
+    );
+  }
+}
+
+List<String> images = [
+  "Assets/Images/Agbokim-waterfalls.jpg",
+  "Assets/Images/BenueRiver.png",
+  "Assets/Images/Bina-Footprints-Niger.jpeg",
+  "Assets/Images/biu-plateau.jpg",
+  "Assets/Images/chappalwaadi.jpg",
+  "Assets/Images/Idanre-Hill.jpg",
+  "Assets/Images/IkogosiWarmSprings.png",
+  "Assets/Images/kanowalls.png",
+  "Assets/Images/Mambilla-Plateau-Taraba.jpg",
+  "Assets/Images/Mandara.jpg",
+  "Assets/Images/mountpatti.jpg",
+  "Assets/Images/obanhills.jpeg",
+  "Assets/Images/Obudu-Cattle-Ranch-Resort-1.jpg",
+  "Assets/Images/Ogbunike-Cave-Oyi-Anambra-State.png",
+  "Assets/Images/olumo.jpg",
+  "Assets/Images/Osogbo.jpg",
+  "Assets/Images/sukur-1.jpg",
+  "Assets/Images/zumarock.png",
+];
+
+List<String> title = [
+  "Agbokim Waterfalls",
+  "Benue River",
+  "Bina Footprints",
+  "Biu Plateau",
+  "Chappal Waadi",
+  "Idanre Hills",
+  "Ikogosi Warn Spring",
+  "Kano Walls",
+  "Mambilla Plateau Tarabe",
+  "Mandara Mountains",
+  "Mountain Patti",
+  "Oban Hills",
+  "Obudu Cattle Ranch Resort",
+  "Ogbunike Cave",
+  "Olumo",
+  "Osogbo",
+  "Sukur",
+  "Zuma Rock",
+];
